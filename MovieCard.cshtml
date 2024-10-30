@@ -1,0 +1,25 @@
+﻿@model PaginatedResultSet<Movie>
+
+<div class="movies-by-genre">
+    @foreach (var movie in Model.Items)
+    {
+        @Html.Partial("_MovieCard", movie)
+    }
+</div>
+
+<div class="pagination">
+    @if (Model.HasPreviousPage)
+    {
+        <a asp-action="MoviesByGenre" asp-route-id="@Model.CurrentGenreId" asp-route-pageNumber="@(Model.PageNumber - 1)" asp-route-pageSize="@Model.PageSize">Previous</a>
+    }
+
+    @if (Model.HasNextPage)
+    {
+        <a asp-action="MoviesByGenre" asp-route-id="@Model.CurrentGenreId" asp-route-pageNumber="@(Model.PageNumber + 1)" asp-route-pageSize="@Model.PageSize">Next</a>
+    }
+</div>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
